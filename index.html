@@ -20,7 +20,7 @@
       <a class="logo link" href="./index.html">Web<span class="word-color">Studio</span></a>
       <nav>
         <ul class="site-nav list">
-          <li><a class="nav-item link" href="./index.html">Studio</a></li>
+          <li class="current-page"><a class="nav-item link" href="./index.html">Studio</a></li>
           <li><a class="nav-item link" href="./portfolio.html">Portfolio</a></li>
           <li><a class="nav-item link" href="">Contacts</a></li>
         </ul>
@@ -38,7 +38,7 @@
     <section class="hero">
       <div class="container">
         <h1 class="hero-title">Effective Solutions for Your Business</h1>
-        <button class="btn" type="button">Order Service</button>
+        <button data-modal-open class="btn" type="button">Order Service</button>
       </div>
     </section>
     <!-- principles -->
@@ -320,6 +320,15 @@
         </ul>
       </div>
     </section>
+    <div data-modal class="backdrop is-hidden">
+      <div class="modal">
+        <button data-modal-close class="close-button" type="button">
+          <svg width="8" height="8">
+            <use href="./images/sprite.svg#close"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
   </main>
   <footer class="site-bottom">
     <div class="container footer-box">
@@ -365,6 +374,7 @@
       </div>
     </div>
   </footer>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>

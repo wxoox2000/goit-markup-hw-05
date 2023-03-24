@@ -21,6 +21,7 @@ body li {
   --main-white-color: #ffffff;
   --main-blue-color: #4d5ae5;
   --main-fill-color: #f4f4fd;
+  --hover-transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 h1,
@@ -100,6 +101,7 @@ header {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--main-color-text);
+  transition: color var(--hover-transition);
 }
 
 .contacts-nav {
@@ -122,6 +124,7 @@ header {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: var(--p-text);
+  transition: color var(--hover-transition);
 }
 
 .list .nav-item:hover,
@@ -132,6 +135,24 @@ header {
 .list .contacts-item:hover,
 .list .contacts-item:focus {
   color: var(--hover-color);
+}
+
+.current-page {
+  position: relative;
+}
+
+.current-page::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  transform: translateY(24px);
+  display: block;
+  width: 100%;
+  height: 4px;
+
+  border-radius: 2px;
+  background-color: var(--hover-color);
 }
 
 /* index.html */
@@ -203,6 +224,7 @@ header {
   border: 0px;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color var(--hover-transition);
 }
 
 .btn:hover,
@@ -340,6 +362,7 @@ header {
 
   background-color: var(--main-blue-color);
   border-radius: 50px;
+  transition: background-color var(--hover-transition);
 }
 
 .member-link:hover,
@@ -368,10 +391,11 @@ header {
   height: 88px;
   border: 1px solid #8e8f99;
   border-radius: 4px;
+  transition: border-color var(--hover-transition);
 }
 
 .customers-link:hover {
-  border-color:#404bbf;
+  border-color: #404bbf;
 }
 
 .customers-icon {
@@ -380,6 +404,7 @@ header {
   height: 56px;
 
   fill: #8e8f99;
+  transition: fill var(--hover-transition);
 }
 
 .customers-link:hover .customers-icon {
@@ -442,7 +467,8 @@ header {
   height: 40px;
   border-radius: 50px;
 
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--main-blue-color);
+  transition: background-color var(--hover-transition);
 }
 
 .soc-media-link:hover,
@@ -456,6 +482,57 @@ header {
   height: 24px;
 
   fill: var(--main-fill-color);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 47, 66, 0.4);
+  opacity: 1;
+  transition: opacity var(--hover-transition), visibility var(--hover-transition);
+}
+
+.backdrop.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+transform: translate(-50%, -50%) scaleY(0);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleY(1);
+  min-width: 408px;
+  min-height: 576px;
+
+  transition: transform var(--hover-transition);
+  background-color: #fcfcfc;
+}
+
+.close-button {
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  margin-top: 24px;
+  margin-right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e7e9fc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+}
+
+.close-button svg {
+  display: block;
 }
 
 /* Portfolio.html */
@@ -492,6 +569,9 @@ header {
 
   height: 48px;
   padding: 12px 24px;
+  transition: color var(--hover-transition),
+    background-color var(--hover-transition), box-shadow var(--hover-transition),
+    border-color var(--hover-transition);
 }
 
 .filtering:hover,
@@ -516,8 +596,10 @@ header {
 
 .examples-content {
   padding: 32px 16px;
-  border: 1px solid #e7e9fc;
+  border: 1px solid;
+  border-color: #e7e9fc;
   border-top: none;
+  transition: border-color 1000ms linear;
 }
 
 .examples > li {
@@ -526,6 +608,7 @@ header {
 
 .card-link {
   display: block;
+  transition: box-shadow var(--hover-transition);
 }
 
 .card-link:hover,
@@ -535,6 +618,34 @@ header {
 }
 
 .card-link:hover .examples-content {
-  border: 1px solid var(--main-fill-color);
+  border-color: var(--main-fill-color);
   border-top: none;
+}
+
+.overlay-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateY(100%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(77, 90, 229, 0.85);
+  transition: transform var(--hover-transition);
+}
+
+.card-link:hover .overlay {
+  transform: translateY(0);
+}
+
+.overlay-text {
+  width: 296px;
+  margin: 0 auto;
+  padding-top: 40px;
+
+  color: var(--main-fill-color);
 }
